@@ -1,0 +1,24 @@
+version: '3.10'
+
+services:
+ plant-bot:
+  build:
+   context: .
+  ports:
+  - 8000:8000
+  volumes:
+  - ./:/app
+
+ plantsqldb:
+  image: mysql
+  ports:
+  - 3306:3306
+  environment:
+  - MYSQL_ROOT_PASSWORD=p@ssw0rd1
+  volumes:
+  - plantsql:/var/lib/mysql
+  - plantsql_config:/etc/mysql
+
+volumes:
+  plantsql:
+  plantsql_config:
